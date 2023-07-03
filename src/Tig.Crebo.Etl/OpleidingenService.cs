@@ -10,9 +10,11 @@ public class OpleidingenService
     {
         if (_opleidingen == null)
         {
-            List<Kwalificatie> kwalificatieDossiers = GetKwalificatieDossiers();
-            List<VervallenKwalificatie> vervallenKwalificatieDossiers = GetVervallenKwalificatieDossiers();
+            List<Kwalificatie> kwalificatieDossiers = GetSBBKwalificatieDossiers();
+            List<VervallenKwalificatie> vervallenKwalificatieDossiers = GetSBBVervallenKwalificatieDossiers();
 
+            //TODO Add Duo opleidingen
+            
             _opleidingen =
                 MergeKwalificatieDossierAndVervallenKwalificatieDossier(kwalificatieDossiers,  vervallenKwalificatieDossiers);
         }
@@ -50,7 +52,7 @@ public class OpleidingenService
         return int.Parse(vervallenKwalificatie.VervangendeCREBONummer.Split("/").First().Trim());
     }
 
-    private List<VervallenKwalificatie> GetVervallenKwalificatieDossiers()
+    private List<VervallenKwalificatie> GetSBBVervallenKwalificatieDossiers()
     {
         const string filePath = @"Csv\VervallenKwalificatie.csv";
 
@@ -60,7 +62,7 @@ public class OpleidingenService
         }
     }
 
-    private List<Kwalificatie> GetKwalificatieDossiers()
+    private List<Kwalificatie> GetSBBKwalificatieDossiers()
     {
         const string filePath = @"Csv\Kwalificatie.csv";
 

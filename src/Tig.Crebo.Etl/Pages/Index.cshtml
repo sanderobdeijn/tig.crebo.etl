@@ -36,7 +36,15 @@
                 <td>@item.Voornaam</td>
                 <td>@item.Tussenvoegsel</td>
                 <td>@item.Achternaam</td>
-                <td>@item.Crebonummer</td>
+                <td>@if(item.VervallenCrebonummer == null)
+                    {
+                        @item.Crebonummer;
+                    }
+                    else
+                    {
+                        @($"{item.Crebonummer} Vervallen({item.VervallenCrebonummer})")
+                    }
+                </td>
                 <td>@item.OpleidingNaam</td>
                 <td>@item.Niveau</td>
             </tr>
