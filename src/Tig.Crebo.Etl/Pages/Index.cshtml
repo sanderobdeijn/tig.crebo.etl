@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "File Upload";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="fileInput">Select File:</label>
+        <input type="file" class="form-control-file" id="fileInput" name="fileInput">
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+@if (Model.VerrijkteStudentenMetGeldigeCREBO.Any())
+{
+    <p />
+    <h2>Studenten met geldige CREBO</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Crebo Nummer</th>
+            <th>Opleiding Naam</th>
+            <th>Niveau</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.VerrijkteStudentenMetGeldigeCREBO)
+        {
+            <tr>
+                <td>@item.Voornaam</td>
+                <td>@item.Tussenvoegsel</td>
+                <td>@item.Achternaam</td>
+                <td>@item.Crebonummer</td>
+                <td>@item.OpleidingNaam</td>
+                <td>@item.Niveau</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.VerrijkteStudentenMetOngeldigeCREBO.Any())
+{
+    <p />
+    <h2>Studenten met ongeldige CREBO</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Crebo Nummer</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.VerrijkteStudentenMetOngeldigeCREBO)
+        {
+            <tr>
+                <td>@item.Voornaam</td>
+                <td>@item.Tussenvoegsel</td>
+                <td>@item.Achternaam</td>
+                <td>@item.Crebonummer</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
